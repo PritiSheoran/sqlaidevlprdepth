@@ -66,7 +66,7 @@ Handles search and response control.
 ## Getting Started with Lab
 Once you're ready to dive in, your virtual machine and **Guide** will be right at your fingertips within your web browser.
 
-![Image](../Lab%20Guides/Lab%201/media/.png)
+![Image](../Lab%20Guides/Lab%201/media/102.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
