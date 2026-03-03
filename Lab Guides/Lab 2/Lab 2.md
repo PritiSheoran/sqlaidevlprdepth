@@ -170,15 +170,13 @@ By completing this lab, you will be able to:
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image27.png)
 
-5.  Sign in to **GitHub Copilot** with your GitHub account by selecting the account login in the top right corner.
-
-    **Note:** Write any prompt and send it, it will ask you to sign infirst.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image28.png)
-
-6.  Prompt Copilot to create a database:
+5.  Select the Copilot icon in the top right, Prompt Copilot to create a database:
 
 	+++@workspace, create a SQL Server database names COntosoMedicalResearch with default settings+++
+
+    **Note:** Write any prompt and send it, it will ask you to sign in first.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image28.png)
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%202/media/image29.png)
 
@@ -612,6 +610,7 @@ chat to create a complete end-to-end solution. Most importantly, you
 ensured that every response is grounded in verified medical research,
 demonstrating how AI can be used responsibly and effectively in
 real-world healthcare and research environments.
+
 
 
 
