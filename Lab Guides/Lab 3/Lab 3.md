@@ -197,8 +197,44 @@ By the end of this lab, participants will be able to:
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image31.png)
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image32.png)
+    
+### Exercise 3: Create Storage Account, and Container
 
-## Exercise 3: Connect SQL server 2025 via SSMS 
+1. In the Azure portal, search for and Select +++Storage Accounts+++, and create a new **Storage Account** by entering the following:
+
+	- Name: +++sa@lab.labinstance.id+++
+
+	- Subscription: **@lab.CloudSubscription.Name**
+
+    - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
+
+    - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
+
+    - Prefered storage account type: **Azure Blob Storage or Azure Data Lake Storage Gen2**
+      
+4. Leave everything else default, select **Review + Create**, and select **Create**
+
+5. Wait for the deployment successful and select on **Go to resource**.
+
+6. Expand Data storage, and select **Containers**.
+
+7. Select **+ Add Container**.
+
+8. In Name enter +++public+++.
+
+9. Select **Create**.
+
+10. Select your public container.
+
+11. Select upload, browse for files, and in Lab files folder select the **clinical_reports.csv** file.
+
+12. Select **Upload**.
+
+13. Expand Settings, and select **Share acess tokens**.
+
+14. Select **Genetrate SAS token and URL**, and copy the Blob SAS token to a notepad to use later in the lab.
+
+## Exercise 4: Connect SQL server 2025 via SSMS 
 
 1.  Double click on SSMS from task bar and select **Sign in with Microsoft**
 
@@ -229,42 +265,6 @@ By the end of this lab, participants will be able to:
     - Select **Trust Server certificate** checkbox
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image38.png)
-
-### Exercise 4: Create Storage Account, and Container
-
-1. In the Azure portal, search for and Select +++Storage Accounts+++, and create a new **Storage Account** by entering the following:
-
-	- Name: +++sa@lab.labinstance.id+++
-
-	- Subscription: **@lab.CloudSubscription.Name**
-
-    - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
-
-    - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
-
-    - Prefered storage account type: **Azure Blob Storage or Azure Data Lake Storage Gen2**
-      
-4. Leave everything else default, select **Review + Create**, and select **Create**
-
-5. Wait for the deployment successful and click on **Go to resource**.
-
-6. Expand Data storage, and select **Containers**.
-
-7. Select **+ Add Container**.
-
-8. In Name enter +++public+++.
-
-9. Select **Create**.
-
-10. Select your public container.
-
-11. Select upload, browse for files, and in Lab files folder select the **clinical_reports.csv** file.
-
-12. Select **Upload**.
-
-13. Expand Settings, and select **Share acess tokens**.
-
-14. Select **Genetrate SAS token and URL**, and copy the Blob SAS token to a notepad to use later in the lab.
 
 
 ## Exercise 5: Enable SQL Server 2025 AI Capabilities
@@ -683,6 +683,7 @@ By the end of this lab, participants will be able to:
 ## Conclusion:
 
 By completing this lab, participants have successfully provisioned infrastructure, enabled SQL Server 2025 AI features, generated vector embeddings using Azure OpenAI, implemented semantic search with DiskANN indexing, and secured sensitive patient data using masking and role-based access control. They also exposed the search functionality as a secure REST API for hospital applications. Overall, learners gained practical experience in building an end-to-end AI-powered, privacy-compliant clinical search system that combines database intelligence, cloud AI services, and secure API development into one integrated solution.
+
 
 
 
