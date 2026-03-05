@@ -232,7 +232,7 @@ By the end of this lab, participants will be able to:
 
 ### Exercise 4: Create Storage Account, and Container
 
-1. Select Storage accounts, and enter the following.
+1. In the Azure portal, search for and Select +++Storage Accounts+++, and create a new **Storage Account** by entering the following:
 
 	- Name: +++sa@lab.labinstance.id+++
 
@@ -679,6 +679,7 @@ By the end of this lab, participants will be able to:
 ## Conclusion:
 
 By completing this lab, participants have successfully provisioned infrastructure, enabled SQL Server 2025 AI features, generated vector embeddings using Azure OpenAI, implemented semantic search with DiskANN indexing, and secured sensitive patient data using masking and role-based access control. They also exposed the search functionality as a secure REST API for hospital applications. Overall, learners gained practical experience in building an end-to-end AI-powered, privacy-compliant clinical search system that combines database intelligence, cloud AI services, and secure API development into one integrated solution.
+
 
 
 
