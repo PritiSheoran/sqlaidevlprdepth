@@ -622,9 +622,15 @@ meaning** to a doctor's query, using vector embeddings.
 4.  Run below query with and without department filter. Observe:Mix of
     departments,Cardiology,Emergency,Internal Medicine.
 
+    ```
+    EXEC dbo.FindSimilarPatientCases
+    @doctorQuery = N'Chest pain on exertion',
+    @topK = 5;
+    ```
+
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image56.png)
 
-5.  Run below query With Filter (Cardiology Only). Observe: Only cardiology cases ,Possibly fewer results,Ranking slightly changes
+6.  Run below query With Filter (Cardiology Only). Observe: Only cardiology cases ,Possibly fewer results,Ranking slightly changes
 
     ```
     EXEC dbo.FindSimilarPatientCases
@@ -635,7 +641,7 @@ meaning** to a doctor's query, using vector embeddings.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%201/media/image57.png)
 
-6.  Run below query with Hybrid search pattern
+7.  Run below query with Hybrid search pattern
 
     ```
     EXEC dbo.FindSimilarPatientCases
@@ -658,5 +664,6 @@ meaning** to a doctor's query, using vector embeddings.
 ## Conclusion:
 
 This lab demonstrates how SQL Server 2025 evolves beyond a traditional relational database into an AI-powered data platform. By integrating Azure OpenAI embeddings directly within SQL, participants build a semantic case retrieval agent that allows doctors to search patient cases using natural language. Through vector indexing, cosine similarity search, and hybrid filtering, learners gain hands-on experience in implementing real-world AI-driven clinical search solutions inside the database engine.
+
 
 
