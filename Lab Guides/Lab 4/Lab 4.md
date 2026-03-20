@@ -155,7 +155,6 @@ Generate queries using natural language and improve productivity.
 
 1. In **Visual Studio Code**, click the **Settings (gear) icon (1)** and select **Backup and Sync Settings (2)**.
 
-
     ![](./media/2new12.png)
 
 1. Click **Sign in** in the Settings Sync window to enable syncing in VS Code.
@@ -254,11 +253,11 @@ Generate queries using natural language and improve productivity.
 
 **Verify Existing Product Data:**
 
-2. Open a **new query** editor for the **SmartInventoryDB**.
+1. Open a **new query** editor for the **SmartInventoryDB**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image27.png)
 
-2. **Execute** the below query. This will check the current stock and
+1. **Execute** the below query. This will check the current stock and
     note down the current **StockQuantity**.
 
     ```
@@ -270,13 +269,13 @@ Generate queries using natural language and improve productivity.
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image28.png)
 
-2. The output shows the current StockQuantity as 5.
+1. The output shows the current StockQuantity as 5.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image29.png)
 
     **Execute the Stored Procedure:** Now, we will restock the product.
 
-2. Execute the stored procedure with the below given query.
+1. Execute the stored procedure with the below given query.
 
     ```
     EXEC RestockProduct 
@@ -293,11 +292,11 @@ Generate queries using natural language and improve productivity.
       ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image30.png)
 
-2. You can verify the updated stock again.
+1. You can verify the updated stock again.
 
     ```
     SELECT ProductID, ProductName, StockQuantity
-    FROM Products
+    FROM core.Products
     WHERE ProductID = 1;
     ```
 
@@ -376,7 +375,7 @@ Goal - Apply role-based access and masking
 
     ```
     SELECT ProductID, ProductName, StockQuantity
-    FROM Products;
+    FROM core.Products;
     ```
     Admin has the unrestricted access so you will be having full data visibility.
 
@@ -388,7 +387,7 @@ Goal - Apply role-based access and masking
     ```
     EXECUTE AS USER = 'InventoryUser';
     SELECT ProductID, ProductName, StockQuantity
-    FROM Products;
+    FROM core.Products;
     REVERT;
     ```
 
@@ -405,7 +404,7 @@ Goal - Apply role-based access and masking
 
     ```
     EXECUTE AS USER = 'InventoryUser';
-    UPDATE Products 
+    UPDATE core.Products 
     SET StockQuantity = 100
     WHERE ProductID = 1;
     REVERT;
@@ -435,7 +434,7 @@ Goal - Apply role-based access and masking
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image40.png)
 
-10. **Verify as Admin (Unmasked View):** Run the below query
+1. **Verify as Admin (Unmasked View):** Run the below query
 
     ```
     SELECT ProductName, Price
@@ -447,7 +446,7 @@ Goal - Apply role-based access and masking
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image41.png)
 
-11. **Verify as Restricted User:** Now, test using your database user
+1. **Verify as Restricted User:** Now, test using your database user
     (InventoryUser)
 
     ```
@@ -462,7 +461,7 @@ Goal - Apply role-based access and masking
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image42.png)
 
-12. **Grant UNMASK Permission Temporarily:**
+1. **Grant UNMASK Permission Temporarily:**
 
     ```
     GRANT UNMASK TO InventoryUser;
@@ -470,7 +469,7 @@ Goal - Apply role-based access and masking
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image43.png)
 
-13. After providing the unmask permission, you can test again. Now, the
+1. After providing the unmask permission, you can test again. Now, the
     real price will be visible. This mainly reinforces the security
     concept.
 
@@ -493,7 +492,7 @@ Allow external applications to access database.
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image45.png)
 
-2. Install **Data API Builder** with the help of this command:
+1. Install **Data API Builder** with the help of this command:
 
     ```
     dotnet tool install --global Microsoft.DataApiBuilder
@@ -533,7 +532,7 @@ Allow external applications to access database.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image52.png)
 
-8. Green represents that the server is connected.
+1. Green represents that the server is connected.
 
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image53.png)
@@ -543,7 +542,7 @@ Allow external applications to access database.
     ![A screenshot of a computer Description automatically
     generated](./media/2new26.png)
 
-10. Inside a new folder, initialize the config file. This command
+1. Inside a new folder, initialize the config file. This command
     **initializes a new Data API Builder project configuration** for a
     Microsoft SQL Server database.
 
@@ -556,13 +555,13 @@ Allow external applications to access database.
 
     >**Note:** If you face any errors while running the above command, please close and restart the VS code.
 
-11. You will notice that under SQLDB folder, a new **dab-config.json**
+1. You will notice that under SQLDB folder, a new **dab-config.json**
     file is created.
 
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image56.png)
 
-12. Open the file and find the **Connection String**. Within the double
+1. Open the file and find the **Connection String**. Within the double
     quotes, enter this connection string and replace Public IP address in the Server and make sure UserID and password are correct. 
 
     ```
@@ -574,7 +573,7 @@ Allow external applications to access database.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image58.png)
 
-13. Edit the dab-config.json file. Replace the last empty ‘**entities’**
+1. Edit the dab-config.json file. Replace the last empty ‘**entities’**
     with the below json.
 
     ```
@@ -597,12 +596,12 @@ Allow external applications to access database.
     ![A screenshot of a computer program Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image60.png)
 
-14. Make sure to change the **authentication provider** as “**StaticWebApps**”
+1. Make sure to change the **authentication provider** as “**StaticWebApps**”
 
     ![A screenshot of a computer program Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image61.png)
 
-15. Make sure your dab-config.json file looks like this:
+1. Make sure your dab-config.json file looks like this:
 
     ```
     {
@@ -637,7 +636,7 @@ Allow external applications to access database.
         "authentication": {
             "provider": "StaticWebApps"
         },
-        "mode": "development"
+        "mode": "production"
         }
     },
     "entities": {
@@ -654,7 +653,7 @@ Allow external applications to access database.
     }
     ```
 
-16. Now, **start the Data Api Builder.** The command dab start launches
+1. Now, **start the Data Api Builder.** The command dab start launches
     **Data API Builder** by reading your configuration file
     (dab-config.json) and starting the REST and GraphQL endpoints that
     expose your database as APIs through Dapr.
@@ -663,7 +662,7 @@ Allow external applications to access database.
     dab start
     ```
 
-    >[!Note] Make sure you don’t close this terminal. You can expand or
+    >**Note:** Make sure you don’t close this terminal. You can expand or
     collapse if needed.
 
     ![A screenshot of a computer program Description automatically
@@ -671,7 +670,7 @@ Allow external applications to access database.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image63.png)
 
-17. Open your browser and navigate to this url. You should see JSON
+1. Open your browser and navigate to this url. You should see JSON
     output. This means that now SQL is exposed as REST API.
 
     ```
@@ -681,7 +680,7 @@ Allow external applications to access database.
     ![A screen shot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image64.png)
 
-18. Now, it’s time to test GraphQL. Navigate to VS Code. Find the
+1. Now, it’s time to test GraphQL. Navigate to VS Code. Find the
     graphql mode as **production**. You need to update it as
     **development**. When DAB runs in **production mode**, it disables
     the GraphQL UI (Playground).
@@ -692,14 +691,14 @@ Allow external applications to access database.
     ![A screenshot of a computer program Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image66.png)
 
-19. Expand the terminal if it is collapsed and press **Ctrl + C** to
+1. Expand the terminal if it is collapsed and press **Ctrl + C** to
     shutdown the dab that you have started using dab start command.
 
     Once you press Ctrl+C, you will see that application is shutting down.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image67.png)
 
-20. Again, start the Data Api Builder:
+1. Again, start the Data Api Builder:
 
     ```
     dab start
@@ -711,7 +710,7 @@ Allow external applications to access database.
     ![A screen shot of a computer program Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image69.png)
 
-21. Navigate to your browser and enter the graphql url:
+1. Navigate to your browser and enter the graphql url:
 
     ```
     http://localhost:5000/graphql
@@ -726,7 +725,7 @@ Allow external applications to access database.
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image70.png)
 
-2. Inside the **Nitro** interface, in the left panel – write the below
+1. Inside the **Nitro** interface, in the left panel – write the below
     query and click on **Run**.
 
     ```
@@ -744,7 +743,7 @@ Allow external applications to access database.
     }
     ```
 
-    >[!Note] If you remember, we have specified the table name as
+    >**Note:** If you remember, we have specified the table name as
     ‘Products’- means with capital P and here, in the query we are writing
     it as ‘products’. The reason is that DAB automatically generates GraphQL
     entities in lowercase (unless explicitly configured).
@@ -756,7 +755,7 @@ Allow external applications to access database.
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image71.png)
 
-23. You should see results on the right side. If your table has data, it
+1. You should see results on the right side. If your table has data, it
     will return the rows. When you run that query, GraphQL translates
     your query into a SQL query automatically.
 

@@ -67,7 +67,7 @@ Exposes database objects as secure REST and GraphQL APIs.
 ## Getting Started with Lab
 Once you're ready to dive in, your virtual machine and **Guide** will be right at your fingertips within your web browser.
 
-![Image](../Lab%20Guides/Lab%201/media/101.png)
+![Image](../Lab%20Guides/Lab%201/media/gs.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
