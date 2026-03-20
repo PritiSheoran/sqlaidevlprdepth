@@ -1,8 +1,17 @@
-# **Lab 3: Building and Securing a Safe Clinical Report Search API** 
+# Lab 3: Building and Securing a Safe Clinical Report Search API
 
-In this lab, participants step into a real-world healthcare scenario where a hospital needs a secure and intelligent way to search clinical discharge summaries using natural language. Using Microsoft SQL Server 2025, SQL Server Management Studio Copilot, Azure OpenAI Service, and Data API Builder, learners will build a secure semantic search API that enables staff to retrieve relevant clinical reports while ensuring patient data privacy through masking, RBAC, and managed identity. This hands-on experience demonstrates how modern AI capabilities can be integrated directly into SQL Server to create enterprise-ready, secure healthcare solutions.
+In this lab, participants step into a real-world healthcare scenario
+where a hospital needs a secure and intelligent way to search clinical
+discharge summaries using natural language. Using Microsoft SQL Server
+2025, SQL Server Management Studio Copilot, Azure OpenAI Service, and
+Data API Builder, learners will build a secure semantic search API that
+enables staff to retrieve relevant clinical reports while ensuring
+patient data privacy through masking, RBAC, and managed identity. This
+hands-on experience demonstrates how modern AI capabilities can be
+integrated directly into SQL Server to create enterprise-ready, secure
+healthcare solutions.
 
-**Objectives**
+## Objectives:
 
 By the end of this lab, participants will be able to:
 
@@ -20,264 +29,247 @@ By the end of this lab, participants will be able to:
 
 ## Exercise 1: Provision SQL Server on Azure VM
 
-1.  Open your browser, enter +++https://portal.azure.com+++ and sign in with your Azure subscription
-    account. 
-	
-	Username: +++@lab.CloudPortalCredential(User1).Username+++
-	
-	TAP: +++@lab.CloudPortalCredential(User1).AccessToken+++
-	
-1. Enter +++Azure SQL+++ in the search bar and select it.
+1. On your LabVM, click on the **Azure Portal** icon.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image1.png)
+    ![Image](../Lab%201/media/94.png)
 
-2.  In the pane for **SQL Server on Azure Virtual Machines**,
-    select **Show options**.
+1. On the **Sign in to Microsoft Azure** tab, you will see the login screen. Enter the following email/username, and click on **Next (2)**. 
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image2.png)
+   - **Email/Username**: <inject key="AzureAdUserEmail"></inject> **(1)**
+   
+      ![Image](../Lab%201/media/95.png)
+     
+1. Now enter the following Temparory Access Pass and click on **Sign in (2)**.
+   
+   - **Temporaray Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
 
-3.  In the **Select an image offer** box, choose a SQL Server image
-    (such as **Free SQL Server License: SQL Server 2025 Enterprise
-    Developer on Windows Server 2025**).Select **Create virtual
-    machine**.
+      ![Image](../Lab%201/media/96.png)
+     
+1. If you see the pop-up **Stay Signed in?**, select **No**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image3.png)
+   ![Image](../Lab%201/media/97.png)
 
-4.  On the **Basics** tab, provide the following information and then
-    click **Next: Disk**
+1. In the Azure portal, type **Azure SQL (1)** in the top search bar and select **Azure SQL (2)** from the Services list.
 
-    - Subscription: **@lab.CloudSubscription.Name**
+    ![](./media/new0.png)
 
-    - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
+1. In the Azure portal, expand **SQL Server (1)**, select **SQL Server on Azure VMs (2)**, and then click **+ Create (3)** to create a new **SQL Server Virtual Machine (4)**.
 
-    - Virtual machine name- +++azuresqlvm@lab.labinstance.id+++
+    ![](./media/new1.png)
 
-    - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
+1. In the **Select an image offer** dropdown **(1)**, choose **Free SQL Server License: SQL Server 2025 Enterprise Developer on Windows Server 2025 (2)**.
 
-    - Availability options: **Availability zone**.
+    ![](./media/new2.png)
 
-        1.  **Zone options**: Self-selected zone
+1. After selecting the image offer **(3)**, click **Create virtual machine (4)** to proceed with the deployment.
 
-        2.  **Availability zone**: Zone 1
+    ![](./media/new3.png)
 
-    - Image: **Free SQL Server License: SQL Server 2025 Enterprise Developer on Windows Server 2025** 
+1. On the **Basics** tab, provide the following details to configure the virtual machine:
 
-    - Size: Search for the +++E4ds_v5+++ offering. 
-	
-		>[!Note] This is one of the minimum
-    recommended VM sizes for SQL Server on Azure VMs. be sure to clean up
-    your resources once you're done with them to prevent any unexpected
-    charges.
+    - **Subscription**: Select the available Azure subscription **(1)**
+    - **Resource group**: Choose an existing resource group **AIDeveloper (2)**
+    - **Virtual machine name**: Enter a name **sqlvm-<inject key="Deployment ID" enableCopy="false"/> (3)**
+    - **Region**: Select **Central US (4)**
+    - **Availability options**: Select **Availability zone (5)**
+    - **Zone options**: Choose **Self-selected zone (6)**
+    - **Availability zone**: Select **Zone 1 (7)**
 
-    - Enter admin details as below:
+      ![](./media/new4.png)
 
-		- Username : +++sqlvmuser+++
+1. Set the **Security type** to **Standard (1)**, ensure the correct **SQL Server 2025 Enterprise Developer image (2)** is selected, and then click **See all sizes (3)** to choose an appropriate VM size.
 
-		- Password: +++AZvmsql12345+++
+    ![](./media/new5.png)
 
-    - Under **Inbound port rules**, choose **Allow selected ports**, and
-    then select **RDP (3389)** from the dropdown list.
+1. In the **Select a VM size** window, search for **E4ds_v5 (1)**, expand **E-Series v5 (2)**, select **E4ds_v5 (3)**, and then click **Select ()4**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image4.png)
+    ![](./media/new6.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image5.png)
+1. On the **Basics** tab, configure the following settings:
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image6.png)
+    - **Size**: Verify the selected size (**Standard_E4ds_v5 - 4 vCPUs, 32 GiB memory**) **(1)**
+    - **Username**: Enter **sqlvmuser (2)**
+    - **Password**: Enter **AZvmsql12345 (3)**
+    - **Confirm password**: Enter **AZvmsql12345 (4)**
+    - **Public inbound ports**: Select **Allow selected ports (5)**
+    - **Select inbound ports**: Choose **RDP (3389) (6)**
+    - Then, click **Next: Disk > (7)**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image7.png)
+      ![](./media/new7.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image8.png)
+1. Keep the default disk settings and click **Next: Networking >**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image9.png)
+    ![](./media/new8.png)
 
-5.  Keep default disk type values and the default **networking** values.
+1. Keep the default networking settings, ensure **Allow selected ports** with **RDP (3389)** is selected, and then click **Next: Management**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image10.png)
+    ![](./media/new9.png)
 
-6.  On Management page, enable the following information.
+1. On the **Management** tab, enable **System assigned managed identity (1)** and **Enable periodic assessment (2)**, then click **Next: Monitoring > (3)**.
 
-	- Enable system assigned maanaged identity
+    ![](./media/new10.png)
 
-	- Enable peridodic assessment
+1. Keep the default monitoring settings and click **Next: Advanced >**.
 
+    ![](./media/new11.png)
 
-8.  Click on **SQL Server management** tab
+1. On the **SQL Server settings** tab, set **SQL connectivity** to **Public (Internet) (1)**, enable **SQL Authentication (2)**, and then click **Review + create (3)**.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image13.png)
+    ![](./media/new12.png)
 
-9.  On SQL server setting spage,select below values and then click on
-    **Review + create.**
+1. Review the configuration details, ensure validation is passed, and then click **Create** to deploy the virtual machine.
 
-    SQL connectivity : Public(internet)
+    ![](./media/new13.png)
 
-    SQL authentication : Enable
+1. Once the deployment is complete, click **Go to resource** to access the created virtual machine.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image14.png)
+    ![](./media/new14.png)
 
-10.  Once the validation is passed, click on **Create**.
+1. On the virtual machine **Overview** page, copy the **Public IP address** and paste in **Notepad** to use for connecting to the SSMS in the next steps.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image15.png)
-
-11. Wait for the deployment to complete.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image16.png)
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image17.png)
-
-12. Copy the Public IP Address to connect from SSMS in next task
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image18.png)
+    ![](./media/new15.png)
 
 ## Exercise 2: Create Azure OpenAI resource and deploy embedding models
 
-1.  Switch back to Azure and search for +++Azure OpenAI+++ and select it.
+1. In the **Azure OpenAI** page, click **+ Create (1)** and select **Azure OpenAI (2)** from the dropdown to create a new Azure OpenAI resource, which will be used to deploy models and generate embeddings in the lab.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image19.png)
+    ![](./media/new16.png)
 
-2.  Click on Create-\> Azure OpenAI.
+1. On the **Basics** tab, provide the following details to create the Azure OpenAI resource for deploying models used in the lab:
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image20.png)
+    - **Subscription**: Select your Azure subscription **(1)**
 
-3.  Enter below values and click **Next**:
+    - **Resource group**: Choose an existing resource group **AIDeveloper (2)**
 
-    - Subscription: **@lab.CloudSubscription.Name**
+    - **Region**: Select **East US (3)**
 
-    - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
+    - **Name**: Enter **azsqlaoai-<inject key="Deployment ID" enableCopy="false"/> (4)**
 
-    - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
+    - **Pricing tier**: Select **Standard S0 (5)**
 
-    - Name: +++azsqlaoai@lab.labinstance.id+++
+    - Click **Next (6)** to proceed.
 
-    - Pricing tier: **Standard S0**
+      ![](./media/new17.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image21.png)
+1. On the **Review + submit** tab, verify the provided details and click **Create** to deploy the Azure OpenAI resource.
 
-4.  Keep the default value and click Next.
+    ![](./media/new18.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image22.png)
+1. Once the deployment is complete, click **Go to resource** to open the Azure OpenAI resource.
 
-5.  Keep default tag and click Next.
+    ![](./media/new19.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image23.png)
+1. In the Azure OpenAI resource, navigate to **Keys and Endpoint (1)** from the left navigation pane, copy the **Key1 (2)** and **Endpoint (3)** values and paste them in **Notepad** to use in the next steps for authentication and integration.
 
-6.  Review the details and click **Create**.
+    ![](./media/new20.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image24.png)
+1. From the Azure OpenAI resource **Overview (1)** page, click **Go to Foundry portal (2)** to access model deployments and manage AI models required for the lab.
 
-7.  Wait for the deployment successful and click on **Go to resource.**
+    ![](./media/new21.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image25.png)
+1. In the Foundry portal, navigate to **Deployments (1)**, click **+ Deploy model (2)**, and select **Deploy base model (3)** to deploy a model for use in the lab.
 
-8.  Expand Resource management-\> keys and endpoints form left
-    navigation menu and copy endpoint and key value to a notepad to use
-    in next tasks
+    ![](./media/new22.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image26.png)
+1. In the **Select a model** window, search for **text-embedding-3-small (1)**, select it **(2)**, and click **Confirm (3)** to use it for generating embeddings in the lab.
 
-9.  Click on **Overview** and select **Go to Foundry portal**
+    ![](./media/new23.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image27.png)
+1. In the **Deploy text-embedding-3-small** window, click **Customize** to adjust limits.
 
-10. Click on **Deployments** under Shared resource from left navigation
-    menu. Select **Deploy model-\> Deploy base model.**
+    ![](./media/new24.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image28.png)
+1. In the **Deploy text-embedding-3-small** window, set the **Tokens per Minute Rate Limit** to **100K (1)**, keep the default settings, and click **Deploy (2)** to complete the model deployment.
 
-11. Search for +++text-embedding+++ , select **text-embedding-3-small**
-    model and click **Confirm**.
+    ![](./media/new25.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image29.png)
+1. After the model deployment is complete, navigate to **Deployments**, open the deployed model, and copy the **Endpoint (Target URI)** and paste it in the **Notepad** to use in the next steps for integration.
 
-12. Keep the default values and click **Customize**
+    ![](./media/new26.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image30.png)
+## Exercise 3: Create Storage account and Store the file
 
-13. Set Tokens per Minute Rate limit to max and click **Deploy**.
+1. In the Azure portal, type **Storage accounts** in the search bar and select **Storage accounts** from the Services list to create and manage storage resources for the lab.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image31.png)
+    ![](./media/new27.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image32.png)
-    
-### Exercise 3: Create Storage Account, and Container
+1. On the **Basics** tab, provide the following details to create the storage account for storing lab data:
 
-1. In the Azure portal, search for and Select +++Storage Accounts+++, and create a new **Storage Account** by entering the following:
+    - **Subscription**: Select your Azure subscription **(1)**
+    - **Resource group**: Choose an existing resource group **AIDeveloper (2)**
+    - **Storage account name**: Enter **storage<inject key="Deployment ID" enableCopy="false"/> (3)**
+    - **Region**: Select **(US) East US (4)**
+    - **Preferred storage type**: Select **Azure Blob Storage or Azure Data Lake Storage Gen2 (5)**
+    - **Performance**: Select **Standard (6)**
+    - **Redundancy**: Select **Locally-redundant storage (LRS) (7)**
+    - Click **Review + create (8)**, then proceed to create the storage account.
 
-	- Name: +++sa@lab.labinstance.id+++
+      ![](./media/new28.png)
 
-	- Subscription: **@lab.CloudSubscription.Name**
+1. On the **Review + create** tab, verify the configuration details and click **Create** to deploy the storage account.
 
-    - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
+    ![](./media/new29.png)
 
-    - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
+1. Once the deployment is complete, click **Go to resource** to open the storage account.
 
-    - Prefered storage account type: **Azure Blob Storage or Azure Data Lake Storage Gen2**
-      
-4. Leave everything else default, select **Review + Create**, and select **Create**
+    ![](./media/new30.png)
 
-5. Wait for the deployment successful and select on **Go to resource**.
+1. In the storage account, navigate to **Containers (1)** under **Data storage** and click **+ Add container (2)** to create a new container for storing lab files.
 
-6. Expand Data storage, and select **Containers**.
+    ![](./media/new31.png)
 
-7. Select **add Container** then select **Create New Container**.
+1. In the **New container** pane, enter the container name as **public (1)** and click **Create (2)** to create the container for storing lab files.
 
-8. In Name enter +++public+++.
+    ![](./media/new32.png)
 
-9. Select **Create**.
+1. In the **public** container, click **Upload (1)**, then select **Browse for files (2)** to upload the *clinical_reports.csv* file.
 
-10. Select your public container.
+    ![](./media/new33.png)
 
-11. Select upload, browse for files, and in Lab files folder select the **clinical_reports.csv** file.
+1. In the file explorer, navigate to **C:\LabFiles (1)**, select the **clinical_reports.csv (2)** file, and click **Open (3)** to upload it to the container.
 
-12. Select **Upload**.
+    ![](./media/new34.png)
 
-13. Expand Settings, and select **Share acess tokens**.
+1. In the **Upload blob** pane, verify the selected file and click **Upload** to upload the file to the container.
 
-14. Select **Genetrate SAS token and URL**, and copy the Blob SAS token to a notepad to use later in the lab.
+    ![](./media/new35.png)
 
-15. Go to the **Storage Account**, select **Data Storage**, **Containers** and select your **public** container.
+1. In the public container, navigate to **Shared access tokens (1)** under settings, and click **Generate SAS token and URL (2)** to create a SAS token for accessing the uploaded file.
 
-16. Select **Change Access Level** and select **Container (anonymous read access for containers and blob)**
+    ![](./media/new36.png)
+
+1. After generating the SAS token, copy the **Blob SAS token** value and save it, as it will be used later to access the storage data.
+
+    ![](./media/new37.png)
 
 ## Exercise 4: Connect SQL server 2025 via SSMS 
 
-1.  Double click on SSMS from task bar and select **Sign in** in the top right corner.
+1. In the LabVM search bar, type **SSMS (1)** and select **SQL Server Management Studio 22 (2)** to open the application.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image33.png)
+    ![](./media/new38.png)
 
-2.  Select Work or School account and click Continue.
+1. In the **Sign in to SQL Server Management Studio** window, click **Sign in with Microsoft** to continue.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image34.png)
+    ![](./media/new39.png)
 
-3.  Sign in with your assigned account.
+1. Select **Work or school account (1)** and click **Continue (2)** to sign in using your assigned credentials.
 
-	Username: +++@lab.CloudPortalCredential(User1).Username+++
-	
-	TAP: +++@lab.CloudPortalCredential(User1).AccessToken+++
+    ![](./media/new40.png)
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image35.png)
+1. In the **Connect** window, provide the following details to connect to the SQL Server:
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image36.png)
+    - **Server name**: Enter the **Public IP address with port 1433** that you copied in Exercise 1 **(1)**
+    - **Authentication**: Select **SQL Server Authentication (2)**
+    - **User name**: Enter **sqlvmuser (2)**
+    - **Password**: Enter the **AZvmsql12345 (3)**
+    - **Trust Server Certificate**: Check this option **(4)**
+    - Click **Connect (5)** to access the SQL Server.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image37.png)
-
-12. Enter below details and click **Continue**.
-
-    - Server name: **Azure VM public ip address,1433 (eg :8.234.343.54,1433)**
-
-    - Authentication: **SQL Server Authentication**
-   
-    - Username: +++sqlvmuser+++
-   
-    - Password: +++AZvmsql12345+++
-
-    - Select **Trust Server certificate** checkbox
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image38.png)
-
+        ![](./media/new41.png)
 
 ## Exercise 5: Enable SQL Server 2025 AI Capabilities
 
-1.  In SSMS → New Query → run the below query
+1. In SSMS, click **New Query (1)** to open a query window, then enter the following SQL commands **(2)** to create a new database and set it as active:
 
     ```
     CREATE DATABASE ContosoClinicalReports;
@@ -286,7 +278,14 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-2.  Run below query to enable outbound REST
+1. Click **Execute (3)** to run the query and verify that the message **Commands completed successfully** **(4)** appears, confirming the database creation
+
+    ![A screenshot of a computer Description automatically
+    generated](./media/Q1.png)
+
+    >**Note:** For each query below, please select **New Query** in the tool bar.
+
+2. Run below query to enable outbound REST.
 
     ```
     USE master;
@@ -297,11 +296,9 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image39.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image52.png)
 
-3.  Run below query to **enable preview features in database.** This
-    enables VECTOR type ,VECTOR INDEX , AI_GENERATE_EMBEDDINGS and
-    VECTOR_SEARCH
+3. Run below query to **enable preview features in database.** This enables VECTOR type , VECTOR INDEX , AI_GENERATE_EMBEDDINGS and VECTOR_SEARCH .
 
     ```
     USE ContosoClinicalReports;
@@ -311,9 +308,9 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image40.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image53.png)
 
-4.  Run below query to create ClinicalReports table
+4. Run below query to create ClinicalReports table
 
     ```
     CREATE TABLE dbo.ClinicalReports
@@ -329,49 +326,96 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image41.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image54.png)
 
-5.  Run below query to **Create Master Key.**
+5. Run below query to **Create Master Key.**
+
+    >**Note:** If you have used different password then replace the password in the query below.
+
     ```
     USE ContosoClinicalReports;
     GO
     IF NOT EXISTS (SELECT 1 FROM sys.symmetric_keys WHERE name = '##MS_DatabaseMasterKey##')
     BEGIN
-        CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'AZvmsql12345!';
+        CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'AZvmsql12345';
     END
     GO 
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image42.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image55.png)
 
-6.  Run below query to create Database Scoped Credential. Must be
-    created in ContosoClinicalReports, NOT master. Replace \<YOUR SAS
-    TOKEN\> with your blob’s sas token value
+6. Run below query to create Database Scoped Credential.
+
+    >**Note**: Replace CREDENTIAL value with OpenAI Endpoint and SECRET value
+    OpenAI Key that you copied and pasted in the Notepad in Exercise 2.
 
     ```
+    CREATE DATABASE SCOPED CREDENTIAL [Paste OpenAI Endpoint] 
+    WITH 
+       IDENTITY = 'HTTPEndpointHeaders', 
+       SECRET   = '{"api-key":"Paste OpenAI Key"}' 
+    GO 
+    ```
+
+    ![A screenshot of a computer Description automatically
+    generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image56.png)
+
+7. Run below query to create External Model.
+
+    >**Note**: Replace Location with text-embedding URL from Microsoft Foundry
+    Portal and Credential value with OpenAI Endpoint that you copied and pasted in the Notepad in Exercise 2.
+
+    ```
+    CREATE EXTERNAL MODEL ClinicalEmbeddingModel 
+    WITH ( 
+        -- Full embeddings endpoint URL: host + deployment + path + api-version 
+        LOCATION   = 'https://azsqlaoai0216.openai.azure.com/openai/deployments/embeddings/embeddings?api-version=2024-02-15-preview', 
+        API_FORMAT = 'Azure OpenAI', 
+        MODEL_TYPE = EMBEDDINGS, 
+        MODEL      = 'text-embedding-3-small', 
+        -- Reference the credential we created above (named by host URL) 
+        CREDENTIAL = [Paste OpenAI Endpoint], 
+        PARAMETERS = '{ "sql_rest_options": { "retry_count": 10 } }'  
+    ); 
+    GO 
+    ```
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image58.png)
+
+8. Run below query to create Credential for Blob Storage.
+
+	>**Note**: Replace the SECRET value with Storage account SAS token that you copied and pasted in Notepad in Exercise 3.
+
+    ```
+    -- Create a credential for Blob storage
     CREATE DATABASE SCOPED CREDENTIAL ClinicalReportsBlobCred
     WITH IDENTITY = 'SHARED ACCESS SIGNATURE',
-    SECRET = '<YOUR SAS TOKEN>';
+        SECRET = '<Paste the SAS Token>';
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image43.png)
+    ![A screenshot of a computer Description automatically
+    generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image59.png)
 
-7.  Run below query to create External Data Source. **Note: Replace the storage account name in the query 'LOCATION'**
+9. Run below query to create the external data source credential.
+
+	>**Note**: Replace the Location value with your storage account name.
 
     ```
+    -- Now create the external data source using that credential
     CREATE EXTERNAL DATA SOURCE ClinicalReportsBlob
     WITH (
         TYPE = BLOB_STORAGE,
-        LOCATION = 'https://<storageaccount>.blob.core.windows.net/clinical-reports.csv',
+        LOCATION = 'https://sa@lab.labInstance.ID.blob.core.windows.net/public',
         CREDENTIAL = ClinicalReportsBlobCred
     );
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image44.png)
+    ![A screenshot of a computer Description automatically
+    generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image60.png)
 
-8.  Run below query to bulk insert:
+10. Run below query to bulk insert:
 
     ```
     TRUNCATE TABLE dbo.ClinicalReports;
@@ -392,57 +436,34 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image45.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image61.png)
 
-9.  Run below query to verify the table is data
+11. Run below query to verify the table data:
 
-    +++SELECT COUNT(\*) FROM dbo.ClinicalReports;+++
+    ```
+    SELECT COUNT(*) FROM dbo.ClinicalReports;
+    ```
 
-    >[!Alert] If you receive an error, try running +++SELECT TOP 10 * FROM dbo.ClinicalReports+++ to verify there is data being stored.
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image46.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image62.png)
 
 ## Exercise 6: Azure OpenAI Integration (SQL Server 2025 Pattern)
 
-1.  Update below query with Azure OpenAI key and run to create
-    Credential for Azure OpenAI
+1. Run below query to test the embeddings
 
     ```
-    CREATE DATABASE SCOPED CREDENTIAL AzureAICred
-    WITH IDENTITY = 'Managed Identity',
-    # SECRET = '{"api-key":"<YOUR_AZURE_OPENAI_KEY>"}';
-    ```
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image47.png)
-
-2.  Run below query to create External Embedding Model. Update location
-    variable with the Target URI(Endpoint) of text-embedding-3-small
-    model
-
-    ```
-    CREATE EXTERNAL MODEL ClinicalEmbeddingModel
-    WITH (
-        LOCATION   = 'https://azsqlaoai0216.openai.azure.com/openai/deployments/<deployment-name>/embeddings?api-version=2024-02-01',
-        API_FORMAT = 'Azure OpenAI',
-        MODEL_TYPE = EMBEDDINGS,
-        MODEL      = 'text-embedding-3-small',
-        CREDENTIAL = ClinicalReportsBlobCred,
-        PARAMETERS = '{ "sql_rest_options": { "retry_count": 10 } }'
-    );
+    SELECT AI_GENERATE_EMBEDDINGS
+    (
+    N'Patient with fever and cough' 
+    USE MODEL ClinicalEmbeddingModel
+    ) AS Emb;
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image48.png)
-
-3.  Run below query to test the embeddings
-
-    `SELECT AI_GENERATE_EMBEDDINGS(N'Patient with fever and cough' USE MODEL ClinicalEmbeddingModel) AS Emb;`
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image49.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image63.png)
 
 ## Exercise 7: Create Embeddings Table
 
-1.  Run below query
+1. Run below query
 
     ```
     DROP TABLE IF EXISTS dbo.ReportEmbeddings;
@@ -456,23 +477,46 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image50.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image64.png)
 
-2.  Run below query:
+2. Run below query
 
     ```
     INSERT INTO dbo.ReportEmbeddings (ReportID, Embedding)
     SELECT ReportID,
-        AI_GENERATE_EMBEDDINGS(ReportText USE MODEL ClinicalEmbeddingModel)
+        AI_GENERATE_EMBEDDINGS (ReportText USE MODEL ClinicalEmbeddingModel)
     FROM dbo.ClinicalReports;
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image51.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image65.png)
+
+    >**Note**: As the number of rows are too much, session can be interrupted
+    sometimes. In this case, you can load the embeddings in two batches.
+    First load 100 rows and then again 100 rows with the help of below
+    query: (Run the below query twice to load 200 records)
+
+    ```
+    INSERT INTO dbo.ReportEmbeddings (ReportID, Embedding)
+    SELECT TOP (100) ReportID,
+        AI_GENERATE_EMBEDDINGS (ReportText USE MODEL ClinicalEmbeddingModel)
+    FROM dbo.ClinicalReports
+    WHERE ReportID NOT IN (SELECT ReportID FROM dbo.ReportEmbeddings);
+    ```
+
+	You can check how many rows are processed:
+
+    ```
+    SELECT COUNT(*) AS ProcessedReports
+    FROM dbo.ReportEmbeddings;
+    ```
+
+    ![A screenshot of a computer Description automatically
+    generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image66.png)
 
 ## Exercise 8: Create Vector Index (DiskANN) and Exact vs ANN Search
 
-1.  Run below query to create vector indexx
+1. Run below query to create vector index
 
     ```
     CREATE VECTOR INDEX IX_ReportEmbeddings
@@ -481,9 +525,9 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image52.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image67.png)
 
-2.  Run below query for exact search
+2. Run below query for exact search
 
     ```
     DECLARE @query NVARCHAR(MAX) =
@@ -500,12 +544,12 @@ By the end of this lab, participants will be able to:
     ORDER BY Distance ASC;
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image53.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image68.png)
 
-3.  Run the query to ANN Search (DiskANN)
+3. Run the query to ANN Search (DiskANN)
 
     ```
-    USE ContosoClinicalReport;   -- use your exact DB name
+    USE ContosoClinicalReports;   -- use your exact DB name
     GO
 
     -- 1) Doctor query
@@ -539,9 +583,9 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image54.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image69.png)
 
-4.  Run below query Measure Recall (Exact vs ANN)
+4. Run below query Measure Recall (Exact vs ANN)
 
     ```
     CREATE OR ALTER PROCEDURE dbo.MeasureRecall
@@ -573,35 +617,11 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image55.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image70.png)
 
-## Exercise 9: Secure with Managed Identity
+## Exercise 9: Apply Masking + RBAC
 
-1.  Enable VM Managed Identity
-
-2.  Assign role: **Cognitive Services OpenAI User**
-
-3.  Create credential:
-
-    ```
-    CREATE DATABASE SCOPED CREDENTIAL SecureAICred
-    WITH IDENTITY = 'Managed Identity';
-    GO
-    ```
-
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image56.png)
-
-4.  Run the query Update model:
-
-    ```
-    ALTER EXTERNAL MODEL ClinicalEmbeddingModel
-    WITH CREDENTIAL = SecureAICred;
-    GO
-    ```
-
-## Exercise 10: Apply Masking + RBAC
-
-1.  Run the query
+1. Run the query
 
     ```
     ALTER TABLE dbo.ClinicalReports
@@ -613,36 +633,40 @@ By the end of this lab, participants will be able to:
     GO
     ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image57.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image71.png)
 
-## Exercise 10: Build the Core Search Stored Procedure with SSMS Copilot
+## Exercise 10: Build the Core Search Stored Procedure with SSMS Copilot 
 
->[!Note] Create the semantic search logic — use free SSMS Copilot to speed up coding.
+**Goal**: Create the semantic search logic — use free SSMS Copilot to
+speed up coding.
 
-1.  In SSMS → Tools → Options → Copilot → Sign in with your GitHub
-    account
+1. In SSMS, click the **Copilot Chat icon** in the top-right corner to open the GitHub Copilot Chat panel.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image58.png)
+    ![](./media/new42.png)
 
-2.  New query window → open Copilot chat pane or type /copilot
+1. Click **Continue with GitHub** to sign in and activate GitHub Copilot.
 
-3.  Ask Copilot:
+    ![](./media/new-11.png)
 
-    +++- Generate stored procedure for semantic search on clinical reports using vector embeddings and Azure OpenAI+++
+    >**Note:** Use your personal GitHub credentials to sign in the GitHub Copilot.
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image59.png)
+2. New query window → open Copilot chat pane or type /copilot
 
-4.  Open new query and click **Apply** on Copilot response and then run
-    the query
+3. Ask Copilot:
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image60.png)
+    ```
+    Generate stored procedure for semantic search on clinical reports using vector embeddings and Azure OpenAI.
+    ```
 
-    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image61.png)
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image73.png)
+
+4. Open a **New Query** and click **Apply** on the Copilot response, and then run the query.
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image74.png)
+
+    ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%203/media/image75.png)
+
 
 ## Conclusion:
 
 By completing this lab, participants have successfully provisioned infrastructure, enabled SQL Server 2025 AI features, generated vector embeddings using Azure OpenAI, implemented semantic search with DiskANN indexing, and secured sensitive patient data using masking and role-based access control. They also exposed the search functionality as a secure REST API for hospital applications. Overall, learners gained practical experience in building an end-to-end AI-powered, privacy-compliant clinical search system that combines database intelligence, cloud AI services, and secure API development into one integrated solution.
-
-
-
-
