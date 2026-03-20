@@ -29,36 +29,30 @@ By completing this lab, you will be able to:
 
 ## Exercise 1: Create SQL Database Server 
 
-1.  Open a browser and go to +++https://portal.azure.com+++ and sign in with
-    your Azure subscription account.
-	
-	Username: +++@lab.CloudPortalCredential(User1).Username+++
-	
-	TAP: +++@lab.CloudPortalCredential(User1).AccessToken+++
-
-2.  Search for +++Azure SQL+++ and select it.
+    
+1.  In the Azure portal, type **Azure SQL** into the search bar and select it from the results.
 
     ![](./media/image1.png)
 
-3.  Expand **Azure SQL Database-\> SQL logical servers** from the left menu and select **Create.**
+3.  Expand **Azure SQL Database | SQL logical servers** from the left menu and select **Create.**
 
     ![](./media/image2.png)
 
 4.  Enter the values below and click on **Next: Networking**
 
-    - Subscription: **@lab.CloudSubscription.Name**
+    - Subscription : **Default Subscription**
 
-    - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
+    - Resource Group: **AIDeveloper**
 
-    - Server Name: +++azdbsqlserver@lab.labinstance.id+++
+    - Server Name: **azdbsqlserver<inject key="DeploymentID" enableCopy="false"/>**
 
-    - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
+    - Region: **Region of your Resource Group**
 
     - Authentication method: Use SQL authentication
 
-    - Server admin login: +++sqladmin+++
+    - Server admin login: **sqladmin**
 
-    - Password: +++Pa55w0rd12345+++
+    - Password: **Pa55w0rd12345**
 
     ![](./media/image3.png)
 
@@ -104,7 +98,7 @@ By completing this lab, you will be able to:
 
 ## Exercise 2: Create an Azure SQL Database
 
-1.  Enter +++Azure SQL+++ in the search bar and select **Azure SQL database.**
+1.  Enter **Azure SQL** in the search bar and select **Azure SQL database.**
 
     ![](./media/image14.png)
 
@@ -112,17 +106,13 @@ By completing this lab, you will be able to:
 
     ![](./media/image15.png)
 
-3.  Select below values:
+3.  Select the following values, keep all other settings as default, and then click **Next: Networking >**:
 
-    - Name: +++ContosoMedicalResearch+++
+    - Name: **ContosoMedicalResearch**
 
-    - Server: **azdbsqlserver@lab.labinstance.id**
+    - Server: **azdbsqlserver<inject key="DeploymentID" enableCopy="false"/>**
 
     ![](./media/image16.png)
-
-4. Keep the default values and then click on Next: Networking.
-
-    ![](./media/image17.png)
 
 5. Enable Add current client IP address and then click **Review+create.**
 
@@ -138,21 +128,7 @@ By completing this lab, you will be able to:
 
 ## Exercise 3: Create a database via SSMS and upload csv file.
 
-1.  Double-click on SSMS from task bar and select **Sign in with Microsoft**
-
-    ![](./media/image21.png)
-
-2.  Select Work or School account and click **Continue**.
-
-    ![](./media/image22.png)
-
-3.  Sign in with your assigned cloud slice account.
-
-    ![](./media/image23.png)
-
-    ![](./media/image24.png)
-
-    ![](./media/image25.png)
+1. From the LabVM, search for **SQL Server Management Studio 22** and open it.
 
 4.  Enter below details and click **Continue**:
 
@@ -160,40 +136,40 @@ By completing this lab, you will be able to:
 
     - Authentication : **SQL Server Authentication**
 
-    - Username : +++sqladmin+++
+    - Username : **sqladmin**
 
-    - Password : +++Pa55w0rd12345+++
+    - Password : **Pa55w0rd12345**
 
     - Select **Trust Server certificate** checkbox
 
-    ![](./media/image26.png)
+        ![](./media/image26.png)
 
-    ![](./media/image27.png)
+        ![](./media/image27.png)
 
 5.  Select the Copilot icon in the top right, Prompt Copilot to create a database:
 
-	+++@workspace, create a SQL Server database names COntosoMedicalResearch with default settings+++
+    ```
+	@workspace, generate a SQL Server script to create a database named ContosoMedicalResearch only if it does not already exist. Use IF NOT EXISTS with sys.databases and wrap the CREATE DATABASE statement inside a BEGIN...END block. Keep default settings. 
+    ```
 
-    **Note:** Write any prompt and send it, it will ask you to sign in first.
-
+    > **Note:** Write any prompt and send it, it will ask you to sign in first. Use your personal or work GitHub credentials to login to use GitHub Copilot features.
+ 
     ![](./media/image28.png)
 
     ![](./media/image29.png)
 
+    ![](./media/image30a.png)
+
     ![](./media/image30.png)
 
-9.  Right-click **DB → Tasks → Import Flat File** as shown in the image
-    below.
+9.  Right-click **DB → Tasks → Import Flat File** as shown in the image below.
 
     ![](./media/image31.png)
 
 10.  Click Next on Import flat file page,
-
     ![](./media/image32.png)
 
-11.  Browse the file library_books.csv form C:\Labfiles folder, enter the
-    table name as +++MedicalResearch+++ and click **Next**.
-
+11.  Browse the file library_books.csv form C:\Labfiles folder, enter the table name as **MedicalResearch** and click **Next**.
     ![](./media/image33.png)
 
 11. Preview the data and click Next.
@@ -212,6 +188,10 @@ By completing this lab, you will be able to:
 
     ![](./media/image37.png)
 
+1. In **Object Explorer**, right-click the **ContosoMedicalRes** database and select **New Query**.
+
+    ![](./media/image37b.png)
+
 15. Run below queries to verify the data in the table.
 
     ```
@@ -223,80 +203,15 @@ By completing this lab, you will be able to:
 
 ## Exercise 4: Create Azure OpenAI service and deploy chat and embedding models
 
-1.  Switch back to Azure and search for +++Azure OpenAI+++ and select it.
+1.  Switch back to Azure and search for **Azure OpenAI** and select it.
 
     ![](./media/image39.png)
 
-2.  Click on Create-\> Azure OpenAI.
+1. Navigate to azsqlaoai<inject key="DeploymentID" enableCopy="false"/> and click on **Go to Foundry portal**
 
-    ![](./media/image40.png)
+    ![](./media/image39a.png)
 
-3.  Enter below and click **Next**.
-
-    - Subscription: **@lab.CloudSubscription.Name**
-
-    - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
-
-    - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
-
-    - Name: +++azsqlaoai@lab.labinstance.id-lab2+++
-
-    - Pricing tier: **Standard S0**
-
-    ![](./media/image41.png)
-
-4.  Keep the default value and click Next.
-
-    ![](./media/image42.png)
-
-5.  Keep the default tag and click Next.
-
-    ![](./media/image43.png)
-
-6.  Review the details and click Create.
-
-    ![](./media/image44.png)
-
-7.  Wait for the deployment to be successful and click on **Go to resource.**
-
-    ![](./media/image45.png)
-
-8.  Expand Resource management-\> keys and endpoints from the left
-    navigation menu and copy the endpoint and key value to a notepad to
-    use in the next tasks.
-
-    ![](./media/image46.png)
-
-9.  Click on **Overview** and select **Go to Foundry portal.**
-
-    ![](./media/image47.png)
-
-10. Click on Deployments under Shared resource from the left navigation
-    menu. Select Deploy model-\> Deploy base model.
-
-    ![](./media/image48.png)
-
-11. Search for +++text-embedding+++, select **text-embedding-3-small** model
-    and click Confirm.
-
-    ![](./media/image49.png)
-
-12. Keep the default values and click Customise.
-
-    ![](./media/image50.png)
-
-13. Set Tokens per Minute Rate limit to max and click Deploy.
-
-    ![](./media/image51.png)
-
-    ![](./media/image52.png)
-
-14. Click on Deployments from the left navigation menu, select **Deploy
-    model-\> Deploy base model.**
-
-    ![](./media/image53.png)
-
-15. Search for +++gpt+++ models and select the **gpt-5.2-chat** model, and
+15. Search for **gpt** models and select the **gpt-5.2-chat** model, and
     click Confirm.
 
     ![](./media/image54.png)
@@ -313,7 +228,7 @@ By completing this lab, you will be able to:
 
 ## Exercise 5: Create Azure AI Search Service
 
-1.  Switch back to the Azure portal tab. Enter +++AI search+++ in the
+1.  Switch back to the Azure portal tab. Enter **AI search** in the
     search bar and select AI Search.
 
     ![](./media/image58.png)
@@ -326,7 +241,7 @@ By completing this lab, you will be able to:
 
     - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
 
-    - Name: +++azsearchrag@lab.labinstance.id+++
+    - Name: **azsearchrag@lab.labinstance.id**
 
     - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
 
@@ -375,7 +290,7 @@ By completing this lab, you will be able to:
 
     - Table name: **MedicalResearch**
 
-    - SQL server authentication password: +++Pa55w0rd12345+++
+    - SQL server authentication password: **Pa55w0rd12345**
 
     ![](./media/image67.png)
 
@@ -416,11 +331,11 @@ By completing this lab, you will be able to:
 9.  Enter the prompts, check vectors and embeddings and verify vectors
     and score differences.
 
-    +++Recent advances in oncology treatment+++
+    **Recent advances in oncology treatment**
 
-    +++Immunotherapy in lung cancer+++
+    **Immunotherapy in lung cancer**
 
-    +++AI diagnostics in cardiology+++
+    **AI diagnostics in cardiology**
 
     ![](./media/image74.png)
 
@@ -430,7 +345,7 @@ By completing this lab, you will be able to:
 
 ## Exercise 7: Build RAG in Azure AI Foundry
 
-1.  Open a new tab and go to +++https://ai.azure.com+++ and sign in with
+1.  Open a new tab and go to **https://ai.azure.com** and sign in with
     your Azure subscription account.
 
 2.  Click on Start building to navigate to the new Microsoft Foundry
@@ -448,7 +363,7 @@ By completing this lab, you will be able to:
 
 5.  Enter the details below and click Create.
 
-    - Project Name: +++Foundryproj-@lab.labinstance.id-lab2+++
+    - Project Name: **Foundryproj-@lab.labinstance.id-lab2**
 
     - Region: **East US 2**
 
@@ -461,7 +376,7 @@ By completing this lab, you will be able to:
     ![](./media/image81.png)
 
 7.  Click on **Models** from left navigation menu, search for
-    +++gpt-5.2-chat+++ and select it.
+    **gpt-5.2-chat** and select it.
 
     ![](./media/image82.png)
 
@@ -485,7 +400,7 @@ By completing this lab, you will be able to:
 
     ![](./media/image87.png)
 
-13. Enter +++knowledgebase1+++ for your knowledge base, select your
+13. Enter **knowledgebase1** for your knowledge base, select your
     **search index** from the drop-down and **create**.
 
     ![](./media/image88.png)
@@ -546,7 +461,7 @@ By completing this lab, you will be able to:
     5) Never answer from general knowledge. Never speculate.
     Formatting:
     - Start with a concise, factual answer.
-    - Then add a short bulleted rationale with specific lines from the retrieved passages.
+    - Then add a short, bulleted rationale with specific lines from the retrieved passages.
     - End with a "Sources" list using titles or ids from the tool output.
     ```
 
@@ -572,9 +487,9 @@ By completing this lab, you will be able to:
 
     Ask:
 
-    +++What are recent advancements in cancer treatment?+++
+    **What are recent advancements in cancer treatment?**
 
-    +++List books and their authors related to AI in radiology diagnostics+++
+    **List books and their authors related to AI in radiology diagnostics**
 
     ![](./media/image103.png)
 
