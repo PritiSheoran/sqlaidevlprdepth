@@ -67,7 +67,7 @@ Exposes database objects as secure REST and GraphQL APIs.
 ## Getting Started with Lab
 Once you're ready to dive in, your virtual machine and **Guide** will be right at your fingertips within your web browser.
 
-![Image](../Lab%20Guides/Lab%201/media/101.png)
+![Image](../Lab%20Guides/Lab%201/media/gs.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
@@ -97,7 +97,7 @@ Feel free to **start, restart, or stop (2)** your virtual machine as needed from
  
 1. On your virtual machine, click on the **Azure Portal** icon.
 
-    ![Image](../Lab%20Guides/Lab%201/media/94.png)
+    ![Image](../Lab%20Guides/Lab%201/media/gs.png)
 
 1. On the **Sign in to Microsoft Azure** tab, you will see the login screen. Enter the following email/username, and click on **Next (2)**. 
 

@@ -31,23 +31,23 @@ By the end of this lab, participants will be able to:
 
 1. On your LabVM, click on the **Azure Portal** icon.
 
-    ![Image](/Lab%20Guides/Lab%201/media/94.png)
+    ![Image](../Lab%201/media/94.png)
 
 1. On the **Sign in to Microsoft Azure** tab, you will see the login screen. Enter the following email/username, and click on **Next (2)**. 
 
-   * **Email/Username**: <inject key="AzureAdUserEmail"></inject> **(1)**
+   - **Email/Username**: <inject key="AzureAdUserEmail"></inject> **(1)**
    
-      ![Image](/Lab%20Guides/Lab%201/media/95.png)
+      ![Image](../Lab%201/media/95.png)
      
 1. Now enter the following Temparory Access Pass and click on **Sign in (2)**.
    
-   * **Temporaray Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
+   - **Temporaray Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
 
-      ![Image](/Lab%20Guides/Lab%201/media/96.png)
+      ![Image](../Lab%201/media/96.png)
      
 1. If you see the pop-up **Stay Signed in?**, select **No**.
 
-   ![Image](/Lab%20Guides/Lab%201/media/97.png)
+   ![Image](../Lab%201/media/97.png)
 
 1. In the Azure portal, type **Azure SQL (1)** in the top search bar and select **Azure SQL (2)** from the Services list.
 
