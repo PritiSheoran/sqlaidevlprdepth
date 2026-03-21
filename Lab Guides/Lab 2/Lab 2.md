@@ -32,7 +32,7 @@ By completing this lab, you will be able to:
     
 1.  In the Azure portal, type **Azure SQL** into the search bar and select it from the results.
 
-    ![](./media/image1.png)
+     ![](./media/image1.png)
 
 3.  Expand **Azure SQL Database | SQL logical servers** from the left menu and select **Create.**
 
