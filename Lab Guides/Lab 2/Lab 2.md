@@ -241,7 +241,7 @@ By completing this lab, you will be able to:
 
     - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
 
-    - Name: **azsearchrag@lab.labinstance.id**
+    - Name: **azsearchrag<inject key="DeploymentID" enableCopy="false"/>**
 
     - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
 
@@ -280,7 +280,7 @@ By completing this lab, you will be able to:
 
     - Azure SQL account type: **SQL database**
 
-    - Server: **azdbsqlserver@lab.labinstance.id**
+    - Server: **azdbsqlserver<inject key="DeploymentID" enableCopy="false"/>**
 
     - Database: **ContosoMedicalResearch**
 
@@ -304,7 +304,7 @@ By completing this lab, you will be able to:
 
     - Subscription: **@lab.CloudSubscription.Name**
 
-    - Azure OpenAI Service: **azsqlaoai@lab.labinstance.id-lab2**
+    - Azure OpenAI Service: **azsqlaoai<inject key="DeploymentID" enableCopy="false"/>-lab2**
 
     - Model deployment : text-embedding-3-small
 
@@ -363,7 +363,7 @@ By completing this lab, you will be able to:
 
 5.  Enter the details below and click Create.
 
-    - Project Name: **Foundryproj-@lab.labinstance.id-lab2**
+    - Project Name: **Foundryproj-<inject key="DeploymentID" enableCopy="false"/>-lab2**
 
     - Region: **East US 2**
 
