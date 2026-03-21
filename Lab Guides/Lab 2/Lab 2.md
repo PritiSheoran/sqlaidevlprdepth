@@ -32,7 +32,7 @@ By completing this lab, you will be able to:
     
 1.  In the Azure portal, type **Azure SQL** into the search bar and select it from the results.
 
-     ![](./media/image1.png)
+    ![](./media/image1.png)
 
 3.  Expand **Azure SQL Database | SQL logical servers** from the left menu and select **Create.**
 
@@ -239,9 +239,9 @@ By completing this lab, you will be able to:
 
 2.  Enter the details below and click **Review + Create**
 
-    - Resource Group: **@lab.CloudResourceGroup(ResourceGroup1).Name**
+    - Resource Group: **AIdeveloper*
 
-    - Name: **azsearchrag<inject key="DeploymentID" enableCopy="false"/>**
+    - Name: **azsearchrag@lab.labinstance.id**
 
     - Region: **@lab.CloudResourceGroup(ResourceGroup1).Location**
 
@@ -280,7 +280,7 @@ By completing this lab, you will be able to:
 
     - Azure SQL account type: **SQL database**
 
-    - Server: **azdbsqlserver<inject key="DeploymentID" enableCopy="false"/>**
+    - Server: **azdbsqlserver@lab.labinstance.id**
 
     - Database: **ContosoMedicalResearch**
 
@@ -304,7 +304,7 @@ By completing this lab, you will be able to:
 
     - Subscription: **@lab.CloudSubscription.Name**
 
-    - Azure OpenAI Service: **azsqlaoai<inject key="DeploymentID" enableCopy="false"/>-lab2**
+    - Azure OpenAI Service: **azsqlaoai@lab.labinstance.id-lab2**
 
     - Model deployment : text-embedding-3-small
 
@@ -363,7 +363,7 @@ By completing this lab, you will be able to:
 
 5.  Enter the details below and click Create.
 
-    - Project Name: **Foundryproj-<inject key="DeploymentID" enableCopy="false"/>-lab2**
+    - Project Name: **Foundryproj-@lab.labinstance.id-lab2**
 
     - Region: **East US 2**
 
@@ -473,21 +473,19 @@ By completing this lab, you will be able to:
 
 24.  Select Azure AI Search and click on Add tool.
 
-    ![](./media/image100.png)
+     ![](./media/image100.png)
 
 25.  Select the Azure search connection and index, and then click on Add.
 
-    ![](./media/image101.png)
+     ![](./media/image101.png)
 
 26.  Select your Azure Search tool and click on Save.
 
-    ![](./media/image102.png)
+     ![](./media/image102.png)
 
 27. Enter the prompts below and check the response
 
-    Ask:
-
-    **What are recent advancements in cancer treatment?**
+    Ask: **What are recent advancements in cancer treatment?**
 
     **List books and their authors related to AI in radiology diagnostics**
 
