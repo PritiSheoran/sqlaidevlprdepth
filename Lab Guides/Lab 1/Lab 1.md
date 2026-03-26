@@ -210,7 +210,7 @@ VS Code.
 
     ![](../Lab%203/media/new26.png)
 
-### Exercise 4: Create Data base and tables
+## Exercise 4: Create Data base and tables
 
 1. Switch back to **SSMS**. Right click on the **Databases** folder and select New database
     to Get patient case data into SQL Server.
@@ -223,7 +223,7 @@ VS Code.
 
     ![](./media/image36.png)
 
-### Exercise 5: Import PatientNotes.csv 
+## Exercise 5: Import PatientNotes.csv 
 
 1. Expand the **Databases** folder, then right-click on **ContosoHospitalDB** and select **New Query**.
 
@@ -296,7 +296,7 @@ VS Code.
 
     ![](./media/image69.png)
 
-### Exercise 6: Create external embedding model
+## Exercise 6: Create external embedding model
 
 1. Run below query to Create master key (needed once per DB)
     
@@ -363,7 +363,7 @@ VS Code.
 
     ![](./media/image42.png)
 
-### Exercise 7: Generate embeddings and store vectors
+## Exercise 7: Generate embeddings and store vectors
 
 1. Run below command to create embeddings table (VECTOR column)
 
@@ -424,7 +424,7 @@ VS Code.
 
     ![](./media/image47.png)
 
-### Exercise 8: Semantic case retrieval (doctor symptom query)
+## Exercise 8: Semantic case retrieval (doctor symptom query)
 
 This exercise helps you search for patient cases that are **similar in
 meaning** to a doctor's query, using vector embeddings.
@@ -590,7 +590,7 @@ meaning** to a doctor's query, using vector embeddings.
 
     ![](./media/image52.png)
 
-### Exercise 9: Compare keyword vs semantic search
+## Exercise 9: Compare keyword vs semantic search
 
 1. Run below queries and the count should match
 
