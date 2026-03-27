@@ -205,7 +205,7 @@ Generate queries using natural language and improve productivity.
 
 ### Task 4: Use Copilot Chat to create a Stored Procedure
 
-1. From the top of the VS Code, open a **new copilot chat**.
+1. From the top of VS Code, open a **new copilot chat**.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image22.png)
 
@@ -237,14 +237,13 @@ Generate queries using natural language and improve productivity.
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image24.png)
 
-1. VS Code will ask you that you want to open the query in the new
+1. VS Code will ask you if you want to open the query in the new
     editor or the existing one. You can select **New untitled editor**.
 
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image25.png)
 
-1. Once added in the Editor, Execute the query and make sure you see
-    the commands completed successfully as the output.
+1. Once added in the Editor, execute the query and make sure you see the commands completed successfully as the output.
 
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image26.png)
@@ -257,8 +256,7 @@ Generate queries using natural language and improve productivity.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image27.png)
 
-1. **Execute** the below query. This will check the current stock and
-    note down the current **StockQuantity**.
+1. **Execute** the below query. This will check the current stock and note down the current **StockQuantity**.
 
     ```
     SELECT ProductID, ProductName, StockQuantity
@@ -275,7 +273,7 @@ Generate queries using natural language and improve productivity.
 
     **Execute the Stored Procedure:** Now, we will restock the product.
 
-1. Execute the stored procedure with the below given query.
+1. Execute the stored procedure with the following query.
 
     ```
     EXEC core.RestockProduct
@@ -292,7 +290,7 @@ Generate queries using natural language and improve productivity.
       ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image30.png)
 
-      >**Note:** Output may vary depending on the stored procedure created and it might show commands completed successfully output. Proceed with the next step to see the updated stock quantity.
+      >**Note:** Output may vary depending on the stored procedure created and it might show commands completed output successfully. Proceed with the next step to see the updated stock quantity.
 
 1. You can verify the updated stock again.
 
@@ -302,8 +300,8 @@ Generate queries using natural language and improve productivity.
     WHERE ProductID = 1;
     ```
 
-    After running the command, you will the see that StockQuantity is now
-    increased by 10 as earlier it was 5. This confirms that stored procedure
+    After running the command, you will see that StockQuantity is now
+    increased by 10 as earlier it was 5. This confirms that the stored procedure
     works correctly.
 
     ![A screenshot of a computer Description automatically
@@ -361,7 +359,7 @@ Goal - Apply role-based access and masking
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image35.png)
 
-1. You can now add this user to the Role. Run the below query:
+1. You can now add this user to the Role. Run the query below:
 
     ```
     ALTER ROLE InventoryViewer
@@ -379,7 +377,7 @@ Goal - Apply role-based access and masking
     SELECT ProductID, ProductName, StockQuantity
     FROM core.Products;
     ```
-    Admin has the unrestricted access so you will be having full data visibility.
+    Admin has unrestricted access, so you will have full data visibility.
 
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image37.png)
@@ -393,7 +391,7 @@ Goal - Apply role-based access and masking
     REVERT;
     ```
 
-    **What This Proves?**
+    **What does this prove?**
 
     - InventoryUser can **SELECT** because of InventoryViewer role.
 
@@ -412,11 +410,11 @@ Goal - Apply role-based access and masking
     REVERT;
     ```
 
-    When executed, you’ll receive ‘Permission denied’ error. Roles simplify
+    When executed, you’ll receive a ‘Permission denied’ error. Roles simplify
     permission management. Instead of granting permissions to each user, we
-    grant them to a role and add user to that role.
+    grant them to a role and add the user to that role.
 
-    **You have NOT granted UPDATE/DELETE, hence. this operation failed.**
+    **You have NOT granted UPDATE/DELETE, hence, this operation failed.**
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image39.png)
 
@@ -444,7 +442,7 @@ Goal - Apply role-based access and masking
     ```
 
     **You will see real price values because SQL Server shows actual data
-    to user with unmask permission.**
+    to the user with unmask permission.**
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image41.png)
 
@@ -459,7 +457,7 @@ Goal - Apply role-based access and masking
     ```
 
     Just because you used - FUNCTION = 'default()' , this will hide the
-    numeric values for the Masked column i.e., Price.
+    numeric values for the Masked column, i.e., Price.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image42.png)
 
@@ -487,7 +485,7 @@ Goal - Apply role-based access and masking
 
 ## Exercise 4: Exposing SQL Data to AI Applications using Data API Builder
 
-Allow external applications to access database.
+Allow external applications to access the database.
 
 1. Open a **New terminal** in VS Code.
 
@@ -521,7 +519,7 @@ Allow external applications to access database.
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image50.png)
 
-1. Select the **SQLDB** folder to open in the VS Code.
+1. Select the **SQLDB** folder to open in VS Code.
 
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image51.png)
@@ -555,16 +553,15 @@ Allow external applications to access database.
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image55.png)
 
-    >**Note:** If you face any errors while running the above command, please close and restart the VS code.
+    >**Note:** If you face any errors while running the above command, please close and restart VS Code.
 
-1. You will notice that under SQLDB folder, a new **dab-config.json**
-    file is created.
+1. You will notice that under the SQLDB folder, a new **dab-config.json** file is created.
 
     ![A screenshot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image56.png)
 
 1. Open the file and find the **Connection String**. Within the double
-    quotes, enter this connection string and replace Public IP address in the Server and make sure UserID and password are correct. 
+    quotes, enter this connection string and replace the Public IP address in the Server, and make sure the UserID and password are correct. 
 
     ```
     Server=<Public IP Address>,1433;Database=SmartInventoryDB;User ID=sqlvmuser;Password=AZvmsql12345;TrustServerCertificate=True;
@@ -576,7 +573,7 @@ Allow external applications to access database.
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image58.png)
 
 1. Edit the dab-config.json file. Replace the last empty ‘**entities’**
-    with the below json.
+    with the below JSON.
 
     ```
     "entities": {
@@ -603,8 +600,8 @@ Allow external applications to access database.
     ![A screenshot of a computer program Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image61.png)
 
-1. Now, it’s time to test GraphQL. Navigate to VS Code. Find the
-    graphql mode as **production**. You need to update it as
+1. Navigate to VS Code. Find the
+    GraphQL mode as **production**. You need to update it as
     **development**. When DAB runs in **production mode**, it disables
     the GraphQL UI (Playground).
 
@@ -683,8 +680,8 @@ Allow external applications to access database.
 
     ![](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image63.png)
 
-1. Open your browser and navigate to this url. You should see JSON
-    output. This means that now SQL is exposed as REST API.
+1. Open your browser and navigate to this URL. You should see JSON
+    output. This means that SQL is now exposed as a REST API.
 
     ```
     http://localhost:5000/api/Products
@@ -693,7 +690,7 @@ Allow external applications to access database.
     ![A screen shot of a computer Description automatically
     generated](https://raw.githubusercontent.com/technofocus-pte/sqlaidevlprdepth/refs/heads/main/Lab%20Guides/Lab%204/media/image64.png)
 
-1. Navigate to your browser and enter the graphql url:
+1. Navigate to your browser and enter the GraphQL URL:
 
     ```
     http://localhost:5000/graphql
@@ -727,7 +724,7 @@ Allow external applications to access database.
     ```
 
     >**Note:** If you remember, we have specified the table name as
-    ‘Products’- means with capital P and here, in the query we are writing
+    ‘Products’- means with a capital P, and here, in the query, we are writing
     it as ‘products’. The reason is that DAB automatically generates GraphQL
     entities in lowercase (unless explicitly configured).
 
