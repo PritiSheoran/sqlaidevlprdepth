@@ -46,7 +46,7 @@ By completing this lab, you will be able to:
 
     - Server Name: **azdbsqlserver<inject key="DeploymentID" enableCopy="false"/>**
 
-    - Region: **Region of your Resource Group**
+    - Region: **<inject key="Region" enableCopy="false"></inject>**
 
     - Authentication method: Use SQL authentication
 
@@ -265,11 +265,13 @@ By completing this lab, you will be able to:
 
     - Name: **azsearchrag<inject key="DeploymentID" enableCopy="false"/>**
 
-    - Region: **Region of your Resource Group**
+    - Region: **<inject key="Region" enableCopy="false"></inject>**
 
-    - Pricing tier: **Standard**.
+    - Pricing tier: **Basic**.
 
-      ![A screenshot of a computer Description automatically generated](./media/image60.png)
+      ![A screenshot of a computer Description automatically generated](./media/latest-2.png)
+
+      ![A screenshot of a computer Description automatically generated](./media/latest-1.png)
 
 1. Review the details and click on Create.
 
@@ -476,6 +478,8 @@ By completing this lab, you will be able to:
 1. Select your knowledge base and click on Connect.
 
     ![](./media/image97.png)
+
+    > **Note:** Please refresh the page if the `knowledge base` field is disabled. 
 
 1. Enter the text in the **Instructions** text box and click on
     **Save**

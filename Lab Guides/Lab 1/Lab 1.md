@@ -139,14 +139,14 @@ VS Code.
 
 1. In the **Connect** window, provide the following details to connect to the SQL Server:
 
-    - **Server name**: Enter the **Public IP address with port 1433** that you copied in Exercise 1 **(1)**
+    - **Server name**: Enter the **Public IP address (e.g., xx.xx.xx.xx)** of the SQL VM that you copied in **Exercise 1, Step 20** **(1)**
     - **Authentication**: Select **SQL Server Authentication (2)**
     - **User name**: Enter **sqlvmuser (2)**
     - **Password**: Enter the **AZvmsql12345 (3)**
     - **Trust Server Certificate**: Check this option **(4)**
     - Click **Connect (5)** to access the SQL Server.
 
-      ![](../Lab%203/media/new41.png)
+      ![](./media/latest.png)
 
 ## Exercise 3: Create Azure OpenAI resource and deploy Embedding Model 
 
@@ -403,8 +403,8 @@ VS Code.
 
 1. Run below query to validate embeddings:
     ```
-     SELECT COUNT(*) AS TotalEmbeddings FROM dbo.PatientEmbeddings;`
-    `SELECT * FROM dbo.PatientEmbeddings;
+    SELECT COUNT(*) AS TotalEmbeddings FROM dbo.PatientEmbeddings;
+    SELECT * FROM dbo.PatientEmbeddings;
     ```
     ![](./media/image45.png)
 
@@ -495,41 +495,6 @@ meaning** to a doctor's query, using vector embeddings.
     ```
 
     ![](./media/image49.png)
-
-1. Run below query to add clinical filter
-
-    ```
-    USE ContosoHospitalDB;
-
-    -- Recreate the query vector (new batch / new window)
-    DECLARE @doctorQuery NVARCHAR(MAX) =
-    N'Elderly patient with shortness of breath and cough, possible pneumonia';
-
-    DECLARE @qvec VECTOR(1536);
-    SELECT @qvec = AI_GENERATE_EMBEDDINGS(@doctorQuery USE MODEL ClinicalEmbeddingModel);
-
-    -- Filters
-    DECLARE @dept NVARCHAR(80) = N'Pulmonology';
-    DECLARE @age  NVARCHAR(50) = N'60-74';
-
-    -- Top 5 semantic matches WITH filters (exact cosine distance)
-    SELECT TOP (5)
-        pn.EncounterID,
-        pn.Department,
-        pn.AgeGroup,
-        pn.AdmissionDate,
-        pn.ChiefComplaint,
-        pn.Summary,
-        VECTOR_DISTANCE('cosine', @qvec, pe.Embedding) AS CosineDistance
-    FROM dbo.PatientEmbeddings AS pe
-    JOIN dbo.PatientNotes       AS pn
-    ON pn.EncounterID = pe.EncounterID
-    WHERE (@dept IS NULL OR pn.Department = @dept)
-    AND (@age  IS NULL OR pn.AgeGroup   = @age)
-    ORDER BY CosineDistance ASC;
-    ```
-
-    ![](./media/image50.png)
 
 1. I’ve kept your parameters and added in‑proc embedding generation.
     This SP uses exact cosine; you can add an @useAnn BIT = 0 switch
