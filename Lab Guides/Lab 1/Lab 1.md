@@ -22,19 +22,19 @@ In this lab, participants work with a realistic healthcare scenario at Contoso M
 	
 1. On your LabVM, click on the **Azure Portal** icon.
 
-    ![Image](../Lab%201/media/94.png)
+   ![Image](../Lab%201/media/94.png)
 
 1. On the **Sign in to Microsoft Azure** tab, you will see the login screen. Enter the following email/username, and click on **Next (2)**. 
 
    - **Email/Username**: <inject key="AzureAdUserEmail"></inject> **(1)**
    
-      ![Image](../Lab%201/media/95.png)
+     ![Image](../Lab%201/media/95.png)
      
 1. Now enter the following Temparory Access Pass and click on **Sign in (2)**.
    
    - **Temporaray Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
 
-      ![Image](../Lab%201/media/96.png)
+     ![Image](../Lab%201/media/96.png)
      
 1. If you see the pop-up **Stay Signed in?**, select **No**.
 
@@ -42,19 +42,19 @@ In this lab, participants work with a realistic healthcare scenario at Contoso M
 
 1. In the Azure portal, type **Azure SQL (1)** in the top search bar and select **Azure SQL (2)** from the Services list.
 
-    ![](../Lab%203/media/new0.png)
+   ![](../Lab%203/media/new0.png)
 
 1. In the Azure portal, expand **SQL Server (1)**, select **SQL Server on Azure VMs (2)**, and then click **+ Create (3)** to create a new **SQL Server Virtual Machine (4)**.
 
-    ![](../Lab%203/media/new1.png)
+   ![](../Lab%203/media/new1.png)
 
 1. In the **Select an image offer** dropdown **(1)**, choose **Free SQL Server License: SQL Server 2025 Enterprise Developer on Windows Server 2025 (2)**.
 
-    ![](../Lab%203/media/new2.png)
+   ![](../Lab%203/media/new2.png)
 
 1. After selecting the image offer **(3)**, click **Create virtual machine (4)** to proceed with the deployment.
 
-    ![](../Lab%203/media/new3.png)
+   ![](../Lab%203/media/new3.png)
 
 1. On the **Basics** tab, provide the following details to configure the virtual machine:
 
@@ -70,11 +70,11 @@ In this lab, participants work with a realistic healthcare scenario at Contoso M
 
 1. Set the **Security type** to **Standard (1)**, ensure the correct **SQL Server 2025 Enterprise Developer image (2)** is selected, and then click **See all sizes (3)** to choose an appropriate VM size.
 
-    ![](../Lab%203/media/new5.png)
+   ![](../Lab%203/media/new5.png)
 
 1. In the **Select a VM size** window, search for **E4ds_v5 (1)**, expand **E-Series v5 (2)**, select **E4ds_v5 (3)**, and then click **Select (4)**.
 
-    ![](../Lab%203/media/new6.png)
+   ![](../Lab%203/media/new6.png)
 
 1. On the **Basics** tab, configure the following settings:
 
@@ -90,35 +90,35 @@ In this lab, participants work with a realistic healthcare scenario at Contoso M
 
 1. Keep the default disk settings and click **Next: Networking >**.
 
-    ![](../Lab%203/media/new8.png)
+   ![](../Lab%203/media/new8.png)
 
 1. Keep the default networking settings, ensure **Allow selected ports** with **RDP (3389)** is selected, and then click **Next: Management**.
 
-    ![](../Lab%203/media/new9.png)
+   ![](../Lab%203/media/new9.png)
 
 1. On the **Management** tab, enable **System assigned managed identity (1)** and **Enable periodic assessment (2)**, then click **Next: Monitoring > (3)**.
 
-    ![](../Lab%203/media/new10.png)
+   ![](../Lab%203/media/new10.png)
 
 1. Keep the default monitoring settings and click **Next: Advanced >**.
 
-    ![](../Lab%203/media/new11.png)
+   ![](../Lab%203/media/new11.png)
 
 1. On the **SQL Server settings** tab, set **SQL connectivity** to **Public (Internet) (1)**, enable **SQL Authentication (2)**, and then click **Review + create (3)**.
 
-    ![](../Lab%203/media/new12.png)
+   ![](../Lab%203/media/new12.png)
 
 1. Review the configuration details, ensure validation is passed, and then click **Create** to deploy the virtual machine.
 
-    ![](../Lab%203/media/new13.png)
+   ![](../Lab%203/media/new13.png)
 
 1. Once the deployment is complete, click **Go to resource** to access the created virtual machine.
 
-    ![](../Lab%203/media/new14.png)
+   ![](../Lab%203/media/new14.png)
 
 1. On the virtual machine **Overview** page, copy the **Public IP address** and paste in **Notepad** to use for connecting to the SSMS in the next steps.
 
-    ![](../Lab%203/media/new15.png)
+   ![](../Lab%203/media/new15.png)
 
 ## Exercise 2: Setup SQL Server 2025 environment 
 
@@ -127,37 +127,37 @@ VS Code.
 
 1. In the LabVM search bar, type **SSMS (1)** and select **SQL Server Management Studio 22 (2)** to open the application.
 
-    ![](../Lab%203/media/new38.png)
+   ![](../Lab%203/media/new38.png)
 
 1. In the **Sign in to SQL Server Management Studio** window, click **Sign in with Microsoft** to continue.
 
-    ![](../Lab%203/media/new39.png)
+   ![](../Lab%203/media/new39.png)
 
 1. Select **Work or school account (1)** and click **Continue (2)** to sign in using your assigned credentials.
 
-    ![](../Lab%203/media/new40.png)
+   ![](../Lab%203/media/new40.png)
 
 1. On **Sign in** page, enter the following email/username, and click on **Next (2)**. 
 
    * **Email/Username**: <inject key="AzureAdUserEmail"></inject> **(1)**
    
-      ![Image](./media/95.png)
+     ![Image](./media/95.png)
      
 1. Now, enter the following Temparory Access Pass and click on **Sign in (2)**.
    
    * **Temporaray Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
 
-      ![Image](./media/96.png)   
+       ![Image](./media/96.png)   
 
-      > **Note:** I may ask you to select the user **<inject key="AzureAdUserEmail"></inject>**.
+       > **Note:** I may ask you to select the user **<inject key="AzureAdUserEmail"></inject>**.
 
 1. In the sign-in prompts, click **Yes** to enable sign-in to all apps and websites on this device.
 
-    ![Image](./media/latest1.png)
+   ![Image](./media/latest1.png)
 
 1. On the confirmation screen, click **Done** to complete the account setup and start accessing your organization’s apps and services.  
 
-    ![Image](./media/latest2.png)
+   ![Image](./media/latest2.png)
 
 1. In the **Connect** window, provide the following details to connect to the SQL Server:
 
@@ -174,11 +174,11 @@ VS Code.
 
 1. In the Azure portal, type **Azure OpenAI (1)** in the top search bar and select **Azure OpenAI (2)** from the Services list.
 
-    ![](../Lab%203/media/latest3.png)
+   ![](../Lab%203/media/latest3.png)
 
 1. In the **Azure OpenAI** page, click **+ Create (1)** and select **Azure OpenAI (2)** from the dropdown to create a new Azure OpenAI resource, which will be used to deploy models and generate embeddings in the lab.
 
-    ![](../Lab%203/media/new16.png)
+   ![](../Lab%203/media/new16.png)
 
 1. On the **Basics** tab, provide the following details to create the Azure OpenAI resource for deploying models used in the lab:
 
