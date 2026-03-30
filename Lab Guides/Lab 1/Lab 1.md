@@ -137,6 +137,28 @@ VS Code.
 
     ![](../Lab%203/media/new40.png)
 
+1. On **Sign in** page, enter the following email/username, and click on **Next (2)**. 
+
+   * **Email/Username**: <inject key="AzureAdUserEmail"></inject> **(1)**
+   
+      ![Image](./media/95.png)
+     
+1. Now, enter the following Temparory Access Pass and click on **Sign in (2)**.
+   
+   * **Temporaray Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
+
+      ![Image](./media/96.png)   
+
+      > **Note:** I may ask you to select the user **<inject key="AzureAdUserEmail"></inject>**.
+
+1. In the sign-in prompts, click **Yes** to enable sign-in to all apps and websites on this device.
+
+    ![Image](./media/latest1.png)
+
+1. On the confirmation screen, click **Done** to complete the account setup and start accessing your organization’s apps and services.  
+
+    ![Image](./media/latest2.png)
+
 1. In the **Connect** window, provide the following details to connect to the SQL Server:
 
     - **Server name**: Enter the **Public IP address (e.g., xx.xx.xx.xx)** of the SQL VM that you copied in **Exercise 1, Step 20** **(1)**

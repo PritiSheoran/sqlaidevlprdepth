@@ -264,7 +264,29 @@ By the end of this lab, participants will be able to:
 
     ![](./media/new40.png)
 
-1. In the **Connect** window, provide the following details to connect to the SQL Server:
+1. On **Sign in** page, enter the following email/username, and click on **Next (2)**. 
+
+   * **Email/Username**: <inject key="AzureAdUserEmail"></inject> **(1)**
+   
+      ![Image](../Lab%201/media/95.png)
+     
+1. Now, enter the following Temparory Access Pass and click on **Sign in (2)**.
+   
+   * **Temporaray Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
+
+      ![Image](../Lab%201/media/96.png)   
+
+      > **Note:** I may ask you to select the user **<inject key="AzureAdUserEmail"></inject>**.
+
+1. If the sign-in prompts, click **Yes** to enable sign-in to all apps and websites on this device.
+
+    ![Image](../Lab%201/media/latest1.png)
+
+1. If the confirmation screen prompts, click **Done** to complete the account setup and start accessing your organization’s apps and services.  
+
+    ![Image](../Lab%201/media/latest2.png)
+
+1. In the **SSMS** **Connect** window, provide the following details to connect to the SQL Server:
 
     - **Server name**: Enter the **Public IP address with port 1433** that you copied in Exercise 1 **(1)**
     - **Authentication**: Select **SQL Server Authentication (2)**
