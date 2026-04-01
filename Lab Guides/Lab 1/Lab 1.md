@@ -30,9 +30,9 @@ In this lab, participants work with a realistic healthcare scenario at Contoso M
    
      ![Image](../Lab%201/media/95.png)
      
-1. Now enter the following Temparory Access Pass and click on **Sign in (2)**.
+1. Now enter the following Temporary Access Pass and click on **Sign in (2)**.
    
-   - **Temporaray Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
+   - **Temporary Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
 
      ![Image](../Lab%201/media/96.png)
      
@@ -116,7 +116,7 @@ In this lab, participants work with a realistic healthcare scenario at Contoso M
 
    ![](../Lab%203/media/new14.png)
 
-1. On the virtual machine **Overview** page, copy the **Public IP address** and paste in **Notepad** to use for connecting to the SSMS in the next steps.
+1. On the virtual machine **Overview** page, copy the **Public IP address** and paste it into **Notepad** to use for connecting to the SSMS in the next steps.
 
    ![](../Lab%203/media/new15.png)
 
@@ -137,15 +137,15 @@ VS Code.
 
    ![](../Lab%203/media/new40.png)
 
-1. On **Sign in** page, enter the following email/username, and click on **Next (2)**. 
+1. On the **Sign in** page, enter the following email/username, and click on **Next (2)**. 
 
    * **Email/Username**: <inject key="AzureAdUserEmail"></inject> **(1)**
    
      ![Image](./media/95.png)
      
-1. Now, enter the following Temparory Access Pass and click on **Sign in (2)**.
+1. Now, enter the following Temporary Access Pass and click on **Sign in (2)**.
    
-   * **Temporaray Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
+   * **Temporary Access Pass**: <inject key="AzureAdUserPassword"></inject> **(1)**
 
        ![Image](./media/96.png)   
 
@@ -170,7 +170,7 @@ VS Code.
 
       ![](./media/latest.png)
 
-## Exercise 3: Create Azure OpenAI resource and deploy Embedding Model 
+## Exercise 3: Create an Azure OpenAI resource and deploy an Embedding Model 
 
 1. In the Azure portal, type **Azure OpenAI (1)** in the top search bar and select **Azure OpenAI (2)** from the Services list.
 
@@ -204,7 +204,7 @@ VS Code.
 
     ![](../Lab%203/media/new19.png)
 
-1. In the Azure OpenAI resource, navigate to **Keys and Endpoint (1)** from the left navigation pane, copy the **Key1 (2)** and **Endpoint (3)** values and paste them in **Notepad** to use in the next steps for authentication and integration.
+1. In the Azure OpenAI resource, navigate to **Keys and Endpoint (1)** from the left navigation pane, copy the **Key1 (2)** and **Endpoint (3)** values, and paste them into **Notepad** to use in the next steps for authentication and integration.
 
     ![](../Lab%203/media/new20.png)
 
@@ -232,10 +232,9 @@ VS Code.
 
     ![](../Lab%203/media/new26.png)
 
-## Exercise 4: Create Data base and tables
+## Exercise 4: Create Database and tables
 
-1. Switch back to **SSMS**. Right click on the **Databases** folder and select New database
-    to Get patient case data into SQL Server.
+1. Switch back to **SSMS**. Right-click on the **Databases** folder and select New database to get patient case data into SQL Server.
 
     ![](./media/image35.png)
 
@@ -281,7 +280,7 @@ VS Code.
     ![A screenshot of a computer Description automatically
     generated](./media/image61.png)
 
-1. **Browse** the file on the Specify Input file section.
+1. **Browse** the file in the Specify Input file section.
 
     ![A screenshot of a computer Description automatically
     generated](./media/image62.png)
@@ -313,14 +312,13 @@ VS Code.
 
     ![](./media/image68.png)
 
-1. Expand the tables section under the database and notice that the
-    table is created.
+1. Expand the tables section under the database and notice that the table is created.
 
     ![](./media/image69.png)
 
-## Exercise 6: Create external embedding model
+## Exercise 6: Create an external embedding model
 
-1. Run below query to Create master key (needed once per DB)
+1. Run below query to create the master key (needed once per DB)
     
     ```
     USE ContosoHospitalDB;
@@ -334,8 +332,7 @@ VS Code.
 
     ![](./media/image39.png)
 
-1. Run below query to Create database scoped credential. The credential
-    name must match the URL you reference in the external model and place your **Azure OpenAI Endpoint Key** and **<YOUR_AZURE_OpenAI_KEY>**.
+1. Run below query to create a database-scoped credential. The credential name must match the URL you reference in the external model, and place your **Azure OpenAI Endpoint Key** and **<YOUR_AZURE_OpenAI_KEY>**.
 
     ```
     USE ContosoHospitalDB;
@@ -355,12 +352,11 @@ VS Code.
 
     ![](./media/image40.png)
 
-1. Switch back to Foundry portal and copy the model endpoint value:
+1. Switch back to the Foundry portal and copy the model endpoint value:
 
     ![](./media/image41.png)
 
-1. Update below query with Azure OpenAI end point and Embeddigns model
-    location (Foundry portal) and run to create external model
+1. Update below query with the Azure OpenAI endpoint and Embeddings model location (Foundry portal) and run to create an external model
 
     ```
     USE ContosoHospitalDB;
@@ -387,7 +383,7 @@ VS Code.
 
 ## Exercise 7: Generate embeddings and store vectors
 
-1. Run below command to create embeddings table (VECTOR column)
+1. Run below command to create the embeddings table (VECTOR column)
 
     ```
     USE ContosoHospitalDB;
@@ -432,7 +428,7 @@ VS Code.
 
     ![](./media/image46.png)
 
-1. Run below query to create vector index (DiskANN)
+1. Run below query to create a vector index (DiskANN)
 
     ```
     USE ContosoHospitalDB;
@@ -451,9 +447,7 @@ VS Code.
 This exercise helps you search for patient cases that are **similar in
 meaning** to a doctor's query, using vector embeddings.
 
-1. Run below query for exact semantic search (VECTOR_DISTANCE). No
-    manual embedding, No REST API, No 1536‑value array and SQL Server
-    does everything automatically
+1. Run below query for exact semantic search (VECTOR_DISTANCE). No manual embedding, no REST API, no 1536‑value array, and SQL Server does everything automatically
 
     ```
     USE ContosoHospitalDB;
@@ -484,8 +478,7 @@ meaning** to a doctor's query, using vector embeddings.
 
     ![](./media/image48.png)
 
-1. Run semantic search with clinical filters.this query filters
-    Department = Pulmonology and Age group = 60–74
+1. Run a semantic search with clinical filters. This query filters Department = Pulmonology and Age group = 60–74
 
     ```
     -- Recreate the vector since we’re in a new batch (or new window)
@@ -607,8 +600,7 @@ meaning** to a doctor's query, using vector embeddings.
     ```
     ![](./media/image55.png)
 
-1. Run below query with and without department filter. Observe:Mix of
-    departments,Cardiology,Emergency,Internal Medicine.
+1. Run below query with and without the department filter. Observe: Mix of departments, Cardiology, Emergency, and Internal Medicine.
 
     ```
     EXEC dbo.FindSimilarPatientCases
@@ -618,7 +610,7 @@ meaning** to a doctor's query, using vector embeddings.
 
     ![](./media/image56.png)
 
-1. Run below query With Filter (Cardiology Only). Observe: Only cardiology cases ,Possibly fewer results,Ranking slightly changes
+1. Run the query below with the filter (Cardiology Only). Observe: Only cardiology cases, possibly fewer results, ranking slightly changes
 
     ```
     EXEC dbo.FindSimilarPatientCases
@@ -629,7 +621,7 @@ meaning** to a doctor's query, using vector embeddings.
 
     ![](./media/image57.png)
 
-1. Run below query with Hybrid search pattern
+1. Run below query with the Hybrid search pattern
 
     ```
     EXEC dbo.FindSimilarPatientCases
@@ -652,6 +644,3 @@ meaning** to a doctor's query, using vector embeddings.
 ## Conclusion:
 
 This lab demonstrates how SQL Server 2025 evolves beyond a traditional relational database into an AI-powered data platform. By integrating Azure OpenAI embeddings directly within SQL, participants build a semantic case retrieval agent that allows doctors to search patient cases using natural language. Through vector indexing, cosine similarity search, and hybrid filtering, learners gain hands-on experience in implementing real-world AI-driven clinical search solutions inside the database engine.
-
-
-
