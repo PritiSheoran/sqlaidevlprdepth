@@ -114,7 +114,7 @@ By completing this lab, you will be able to:
 
       ![](./media/image16.png)
 
-1. Enable Add current client IP address and then click **Review+create.**
+1. Enable Add current client IP address and then click **Review + create.**
 
     ![](./media/image18.png)
 
@@ -126,7 +126,7 @@ By completing this lab, you will be able to:
 
     ![](./media/image20.png)
 
-## Exercise 3: Create a database via SSMS and upload csv file.
+## Exercise 3: Create a database via SSMS and upload a CSV file.
 
 1. From the LabVM, search for **SQL Server Management Studio 22** and open it.
 
@@ -136,9 +136,9 @@ By completing this lab, you will be able to:
 
     - Authentication : **SQL Server Authentication**
 
-    - Username : **sqladmin**
+    - Username: **sqladmin**
 
-    - Password : **Pa55w0rd12345**
+    - Password: **Pa55w0rd12345**
 
     - Select **Trust Server certificate** checkbox
 
@@ -161,7 +161,7 @@ By completing this lab, you will be able to:
 
     > **Note:** It may not generate an executable query. You can copy the generated query and run in the query editor. This is completely optional. You can proceed with the next step.
 
-    > **Note:** Write any prompt and send it, it will ask you to sign in first. Use your personal or work GitHub credentials to login to use GitHub Copilot features.
+    > **Note:** Write any prompt and send it, and it will ask you to sign in first. Use your personal or work GitHub credentials to log in to use GitHub Copilot features.
  
     ![](./media/image28.png)
 
@@ -201,7 +201,7 @@ By completing this lab, you will be able to:
 
     ![](./media/image36.png)
 
-1. Once the operation completed, close the window.
+1. Once the operation is completed, close the window.
 
     ![](./media/image37.png)
 
@@ -218,7 +218,7 @@ By completing this lab, you will be able to:
 
     ![](./media/image38.png)
 
-## Exercise 4: Create Azure OpenAI service and deploy chat and embedding models
+## Exercise 4: Create an Azure OpenAI service and deploy chat and embedding models
 
 1. Switch back to Azure and search for **Azure OpenAI** and select it.
 
@@ -228,13 +228,12 @@ By completing this lab, you will be able to:
 
     ![](./media/image39a.png)
 
-1. Click on Deployments under Shared resource from left navigation
+1. Click on Deployments under Shared resource from the left navigation
     menu. Select Deploy model-\> Deploy base model.
 
     ![](./media/image30-2.png)
 
-1. Search for **gpt** models and select the **gpt-5.2-chat** model, and
-    click Confirm.
+1. Search for **gpt** models and select the **gpt-5.2-chat** model, and click Confirm.
 
     ![](./media/image54.png)
 
@@ -309,7 +308,7 @@ By completing this lab, you will be able to:
 
     - Table or View: **Table**
 
-    - Schema : **dbo**
+    - Schema: **dbo**
 
     - Table name: **MedicalResearch**
 
@@ -317,9 +316,9 @@ By completing this lab, you will be able to:
 
       ![](./media/image67.png)
 
-1. In Vectorise your text, enter the details below and click Next.
+1. In Vectorize your text, enter the details below and click Next.
 
-    - Column to vectorise: **Summary**
+    - Column to vectorize: **Summary**
 
     - Kind: Azure OpenAI
 
@@ -374,7 +373,7 @@ By completing this lab, you will be able to:
 
     ![](./media/image77.png)
 
-1. **Click on Drop down and select Create a new project.**
+1. **Click on the drop-down and select Create a new project.**
 
     ![](./media/image78.png)
 
@@ -396,7 +395,7 @@ By completing this lab, you will be able to:
 
       ![](./media/image80a.png)
 
-1. Navigate back to Azure portal and search for Microsoft Foundry and select the **Foundry-<inject key="Deployment ID" enableCopy="false"></inject>** project.
+1. Navigate back to the Azure portal and search for Microsoft Foundry and select the **Foundry-<inject key="Deployment ID" enableCopy="false"></inject>** project.
 
     ![](./media/1.12.1.png)  
 
@@ -420,8 +419,7 @@ By completing this lab, you will be able to:
 
     ![](./media/image81.png)
 
-1. Click on **Models** from left navigation menu, search for
-    **gpt-5.2-chat** and select it.
+1. Click on **Models** from the left navigation menu, search for **gpt-5.2-chat** and select it.
 
     ![](./media/image82.png)
 
@@ -433,7 +431,7 @@ By completing this lab, you will be able to:
 
     ![](./media/image84.png)
 
-1. Select your AI Search service and API key then click on Connect.
+1. Select your AI Search service and API key, then click on Connect.
 
     ![](./media/image85.png)
 
